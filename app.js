@@ -161,3 +161,9 @@ function filtrarInventario() {
 }
 
 inicializarUsuarios(); actualizarInterfaz();
+// 🌟 REGISTRO OBLIGATORIO PARA CONVERTIR EN APP REAL (PWA)
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch(err => console.log("SW error", err));
+    });
+}
