@@ -44,7 +44,6 @@ function actualizarInterfaz() {
         inventario.forEach((p, i) => {
             let img = p.foto ? '<img src="' + p.foto + '" class="img-prod">' : '<div class="img-prod">👕</div>';
             let etiquetaDinero = '<span class="badge-dinero">Costo: $' + (p.costo||0) + ' | Sugerido: $' + (p.venta||0) + '</span>';
-            
             t.innerHTML += '<tr>' +
                 '<td><div class="col-prod-container">' + img + '<div class="col-prod">' + p.nombre + '<small>📝 ' + detTxt(p) + '</small>' + etiquetaDinero + '</div></div></td>' +
                 ['CH','M','G','XG','XXG'].map(tl => '<td class="col-talla"><span class="badge-stock">' + p.tallas[tl] + '</span></td>').join('') +
@@ -138,21 +137,14 @@ function guardarTodo() {
     actualizarInterfaz();
 }
 
-// 🔍 NUEVA FUNCIÓN DE FILTRADO EN TIEMPO REAL
 function filtrarInventario() {
     const textoBuscado = document.getElementById('buscador-inventario').value.toLowerCase();
     const tabla = document.getElementById('tabla-productos');
     const filas = tabla.getElementsByTagName('tr');
-
     for (let i = 0; i < filas.length; i++) {
         const fila = filas[i];
-        // Asegurarnos de que no sea la fila de "No hay modelos"
         if (fila.innerText.includes("No hay modelos registrados")) continue;
-
-        const textoFila = fila.innerText.toLowerCase();
-
-        // Si el texto de la fila contiene lo que el usuario escribió, se muestra; si no, se oculta
-        if (textoFila.includes(textoBuscado)) {
+        if (fila.innerText.toLowerCase().includes(textoBuscado)) {
             fila.style.display = "";
         } else {
             fila.style.display = "none";
@@ -160,8 +152,11 @@ function filtrarInventario() {
     }
 }
 
-inicializarUsuarios(); actualizarInterfaz();
-// 🌟 REGISTRO OBLIGATORIO PARA CONVERTIR EN APP REAL (PWA)
+// ⚙️ LLAMADAS INICIALES EN LÍNEAS LIMPIAS
+inicializarUsuarios();
+actualizarInterfaz();
+
+// 📱 REGISTRO OFICIAL DE LA PWA APP REAL
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('sw.js').catch(err => console.log("SW error", err));
