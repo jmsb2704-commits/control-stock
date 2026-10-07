@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Control de Stock - Uniformes Xalapa 2000</title>
     <link rel="stylesheet" href="estilos.css">
+    <!-- 📱 ENLACE AL MANIFIESTO PARA VOLVERLA APLICACIÓN INSTALABLE -->
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
     <div class="container">
@@ -87,7 +89,7 @@
         
         <h2>Inventario Actual</h2>
         
-        <!-- 🔍 NUEVA BARRA DE BÚSQUEDA TÁCTIL INTERACTIVA -->
+        <!-- 🔍 BARRA DE BÚSQUEDA TÁCTIL INTERACTIVA -->
         <div class="form-group" style="margin-bottom: 20px;">
             <input type="text" id="buscador-inventario" onkeyup="filtrarInventario()" placeholder="🔍 Buscar por Equipo, Color, Talla o Versión...">
         </div>
@@ -113,7 +115,7 @@
     <!-- VENTANA EMERGENTE (MODAL) -->
     <div class="modal-overlay" id="modal-salida">
         <div class="modal-box">
-            <h3>Registrar Salida de Mercancía</h3>
+            <h3 id="modal-titulo-prod">Registrar Salida de Mercancía</h3>
             <div class="form-group">
                 <label for="modal-talla">Seleccionar Talla a retirar:</label>
                 <select id="modal-talla"></select>
