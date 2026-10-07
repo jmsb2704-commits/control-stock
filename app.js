@@ -138,4 +138,26 @@ function guardarTodo() {
     actualizarInterfaz();
 }
 
+// 🔍 NUEVA FUNCIÓN DE FILTRADO EN TIEMPO REAL
+function filtrarInventario() {
+    const textoBuscado = document.getElementById('buscador-inventario').value.toLowerCase();
+    const tabla = document.getElementById('tabla-productos');
+    const filas = tabla.getElementsByTagName('tr');
+
+    for (let i = 0; i < filas.length; i++) {
+        const fila = filas[i];
+        // Asegurarnos de que no sea la fila de "No hay modelos"
+        if (fila.innerText.includes("No hay modelos registrados")) continue;
+
+        const textoFila = fila.innerText.toLowerCase();
+
+        // Si el texto de la fila contiene lo que el usuario escribió, se muestra; si no, se oculta
+        if (textoFila.includes(textoBuscado)) {
+            fila.style.display = "";
+        } else {
+            fila.style.display = "none";
+        }
+    }
+}
+
 inicializarUsuarios(); actualizarInterfaz();
